@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Winda Lestari - FEBI / MBS IAIN Kerinci. Pengembang web, AI Agent, dan Undangan Digital.">
+  <title>Winda Lestari | Portfolio & Personal Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c121e;
+      --surface: #151f32;
+      --surface-hover: #1c2a44;
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #10b981;
+      --primary-rgb: 16, 185, 129;
+      --primary-light: #34d399;
+      --accent: #38bdf8;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --border: rgba(0, 0, 0, 0.08);
+      --primary: #059669;
+      --primary-rgb: 5, 150, 105;
+      --primary-light: #10b981;
+      --accent: #0284c7;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(12, 18, 30, 0.75);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(248, 250, 252, 0.85);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-light);
+    }
+
+    .theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--surface-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 60px;
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(var(--primary-rgb), 0.12);
+      border: 1px solid rgba(var(--primary-rgb), 0.3);
+      color: var(--primary-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(var(--primary-rgb), 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-hover);
+      border-color: var(--primary);
+    }
+
+    /* Section Headers */
+    .section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      margin-bottom: 36px;
+    }
+
+    .section-subtitle {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(var(--primary-rgb), 0.4);
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      font-size: 1.75rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    /* Info Table / List */
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .info-item .label {
+      color: var(--text-muted);
+    }
+
+    .info-item .value {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Project Showcase Card */
+    .featured-project {
+      position: relative;
+      background: linear-gradient(135deg, var(--surface), rgba(16, 185, 129, 0.05));
+      border: 1px solid rgba(var(--primary-rgb), 0.3);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 24px;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(var(--primary-rgb), 0.12);
+      color: var(--primary-light);
+      border: 1px solid rgba(var(--primary-rgb), 0.25);
+    }
+
+    .feature-points {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-points li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .feature-points li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .project-preview-mockup {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .mockup-inner {
+      border: 1px dashed var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 32px 16px;
+      background: rgba(var(--primary-rgb), 0.03);
+    }
+
+    /* Learning Badges */
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .chip-icon {
+      font-size: 1.5rem;
+    }
+
+    .chip-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .chip-status {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Contact Links */
+    .contact-card {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+
+    .contact-card h3 {
+      font-size: 1.75rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-quote {
+      font-style: italic;
+      color: var(--primary-light);
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding: 50px 0 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">
+        <span class="brand-badge">W</span>
+        <span>Winda Lestari</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#projects">Proyek Unggulan</a></li>
+        <li><a href="#skills">Sedang Dipelajari</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Ganti tema">
+        <span id="themeIcon">☀️</span>
+        <span id="themeLabel">Mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-pill">
+        <span>🌿</span>
+        <span>Selamat datang di halaman personal saya</span>
+      </div>
+      <h1 class="hero-title">
+        Halo, saya <span class="gradient-text">Winda Lestari</span> 👋
+      </h1>
+      <p class="hero-lead">
+        Seorang pengembang yang senang membuat kode bersih dan proyek yang menarik secara visual. Berfokus pada perpaduan estetika web, manajemen bisnis syariah, dan otomatisasi AI.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Lihat Proyek Unggulan ✨</a>
+        <a href="#contact" class="btn btn-secondary">Hubungi Saya 📬</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Profile</div>
+        <h2 class="section-title">Tentang Saya</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">🎓</div>
+          <h3 class="card-title">Pendidikan & Kampus</h3>
+          <p class="card-desc">
+            Menggabungkan keilmuan ekonomi bisnis syariah dengan kemampuan pengembangan teknologi digital masa depan.
+          </p>
+          <ul class="info-list">
+            <li class="info-item">
+              <span class="label">Kampus</span>
+              <span class="value">IAIN Kerinci</span>
+            </li>
+            <li class="info-item">
+              <span class="label">Fakultas</span>
+              <span class="value">FEBI (Fakultas Ekonomi dan Bisnis Islam)</span>
+            </li>
+            <li class="info-item">
+              <span class="label">Jurusan</span>
+              <span class="value">MBS (Manajemen Bisnis Syariah)</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon">💡</div>
+          <h3 class="card-title">Visi & Fokus</h3>
+          <p class="card-desc">
+            Membangun produk digital yang fungsional, bernilai estetika tinggi, dan mempermudah kehidupan sehari-hari melalui adopsi teknologi cerdas modern.
+          </p>
+          <ul class="info-list">
+            <li class="info-item">
+              <span class="label">Minat Utama</span>
+              <span class="value">Web Design, AI Agents & E-Business</span>
+            </li>
+            <li class="info-item">
+              <span class="label">Filosofi Kode</span>
+              <span class="value">Clean, Minimalist & Accessible</span>
+            </li>
+            <li class="info-item">
+              <span class="label">Status</span>
+              <span class="value">Aktif Belajar & Berinovasi</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Project Section -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Showcase</div>
+        <h2 class="section-title">Proyek Unggulan</h2>
+      </div>
+      <div class="featured-project">
+        <div>
+          <div class="tag">Featured Project</div>
+          <h3 style="font-size: 1.8rem; margin: 10px 0 8px;">Undangan Digital 💌</h3>
+          <p style="color: var(--text-muted); margin-bottom: 16px;">
+            Platform undangan digital berbasis web yang interaktif, elegan, dan ramah lingkungan. Didesain secara responsif untuk pengalaman terbaik di smartphone maupun desktop para tamu undangan.
+          </p>
+          <div class="tag-group">
+            <span class="tag">HTML5 / Modern CSS</span>
+            <span class="tag">Responsive Web Design</span>
+            <span class="tag">Interactive RSVP</span>
+            <span class="tag">Visual Animation</span>
+          </div>
+          <ul class="feature-points">
+            <li>Personalisasi nama tamu otomatis via URL parameter</li>
+            <li>Musik latar romantis dengan kontrol audio intuitif</li>
+            <li>Integrasi Google Maps untuk petunjuk lokasi acara</li>
+            <li>Formulir ucapan & konfirmasi kehadiran langsung (RSVP)</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Diskusi Proyek</a>
+        </div>
+        <div class="project-preview-mockup">
+          <div class="mockup-inner">
+            <div style="font-size: 2.2rem; margin-bottom: 8px;">🕊️</div>
+            <h4 style="font-size: 1.15rem; margin-bottom: 6px;">The Wedding Celebration</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">Contoh Tampilan Undangan Digital</p>
+            <div style="font-size: 0.78rem; padding: 6px 12px; background: rgba(var(--primary-rgb), 0.15); border-radius: 6px; display: inline-block; color: var(--primary-light);">
+              Clean & Elegant Experience
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Section -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Roadmap & Exploration</div>
+        <h2 class="section-title">Yang Sedang Saya Pelajari 🚀</h2>
+      </div>
+      <div class="grid-3">
+        <div class="chip">
+          <div class="chip-icon">🤖</div>
+          <div>
+            <div class="chip-name">AI Agent</div>
+            <div class="chip-status">Otomatisasi & AI workflows cerdas</div>
+          </div>
+        </div>
+        <div class="chip">
+          <div class="chip-icon">⚡</div>
+          <div>
+            <div class="chip-name">Antigravity</div>
+            <div class="chip-status">Framework & ekosistem modern</div>
+          </div>
+        </div>
+        <div class="chip">
+          <div class="chip-icon">🧩</div>
+          <div>
+            <div class="chip-name">OMP</div>
+            <div class="chip-status">Tooling & prompt-assisted dev</div>
+          </div>
+        </div>
+        <div class="chip">
+          <div class="chip-icon">🐙</div>
+          <div>
+            <div class="chip-name">GitHub & Git</div>
+            <div class="chip-status">Version control, CI/CD, Pages</div>
+          </div>
+        </div>
+        <div class="chip">
+          <div class="chip-icon">🎨</div>
+          <div>
+            <div class="chip-name">UI / UX Web</div>
+            <div class="chip-status">Desain interaktif & tipografi</div>
+          </div>
+        </div>
+        <div class="chip">
+          <div class="chip-icon">📊</div>
+          <div>
+            <div class="chip-name">Digital Business</div>
+            <div class="chip-status">Integrasi manajemen & inovasi syariah</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🌿</div>
+        <h3>Mari Terhubung!</h3>
+        <p>
+          Tertarik berkolaborasi, berdiskusi mengenai proyek undangan digital, atau bertukar pikiran tentang AI Agent dan teknologi web? Pintu komunikasi selalu terbuka.
+        </p>
+        <div class="contact-buttons">
+          <a href="mailto:wiindalestarii261@gmail.com" class="btn btn-primary">
+            <span>✉️</span> wiindalestarii261@gmail.com
+          </a>
+          <a href="https://github.com/wiindaalestarii261-dev" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <span>🐙</span> GitHub: wiindaalestarii261-dev
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-quote">"Mari ciptakan sesuatu yang indah bersama. 🌿"</p>
+      <p>&copy; <span id="year"></span> Winda Lestari &bull; IAIN Kerinci FEBI / MBS</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle handling
+    const toggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        root.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Dark';
+      } else {
+        root.removeAttribute('data-theme');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Light';
+      }
+    }
+
+    // Dynamic year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
